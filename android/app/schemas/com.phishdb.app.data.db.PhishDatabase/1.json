@@ -1,0 +1,624 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "d162eb57d540ff259b38834a911d0ced",
+    "entities": [
+      {
+        "tableName": "venues",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`venueid` INTEGER NOT NULL, `venuename` TEXT NOT NULL, `city` TEXT, `state` TEXT, `country` TEXT, `venuenotes` TEXT, `alias` TEXT, `short_name` TEXT, PRIMARY KEY(`venueid`))",
+        "fields": [
+          {
+            "fieldPath": "venueid",
+            "columnName": "venueid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "venuename",
+            "columnName": "venuename",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "state",
+            "columnName": "state",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "country",
+            "columnName": "country",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "venuenotes",
+            "columnName": "venuenotes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "alias",
+            "columnName": "alias",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "short_name",
+            "columnName": "short_name",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "venueid"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "songs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`songid` INTEGER NOT NULL, `song` TEXT NOT NULL, `slug` TEXT, `abbr` TEXT, `artist` TEXT, `debut` TEXT, `last_played` TEXT, `times_played` INTEGER, `last_permalink` TEXT, `debut_permalink` TEXT, `gap` REAL, PRIMARY KEY(`songid`))",
+        "fields": [
+          {
+            "fieldPath": "songid",
+            "columnName": "songid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "song",
+            "columnName": "song",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slug",
+            "columnName": "slug",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "abbr",
+            "columnName": "abbr",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "artist",
+            "columnName": "artist",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "debut",
+            "columnName": "debut",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "last_played",
+            "columnName": "last_played",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "times_played",
+            "columnName": "times_played",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "last_permalink",
+            "columnName": "last_permalink",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "debut_permalink",
+            "columnName": "debut_permalink",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gap",
+            "columnName": "gap",
+            "affinity": "REAL",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "songid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_songs_song",
+            "unique": false,
+            "columnNames": [
+              "song"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_songs_song` ON `${TABLE_NAME}` (`song`)"
+          },
+          {
+            "name": "index_songs_slug",
+            "unique": false,
+            "columnNames": [
+              "slug"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_songs_slug` ON `${TABLE_NAME}` (`slug`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "shows",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`showid` INTEGER NOT NULL, `showdate` TEXT NOT NULL, `showyear` INTEGER, `showmonth` INTEGER, `showday` INTEGER, `permalink` TEXT, `exclude_from_stats` INTEGER NOT NULL, `venueid` INTEGER, `venue` TEXT, `city` TEXT, `state` TEXT, `country` TEXT, `artistid` INTEGER, `artist_name` TEXT, `tourid` INTEGER, `tour_name` TEXT, `setlist_notes` TEXT, `soundcheck` TEXT, `created_at` TEXT, `updated_at` TEXT, PRIMARY KEY(`showid`))",
+        "fields": [
+          {
+            "fieldPath": "showid",
+            "columnName": "showid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "showdate",
+            "columnName": "showdate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "showyear",
+            "columnName": "showyear",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "showmonth",
+            "columnName": "showmonth",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "showday",
+            "columnName": "showday",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "permalink",
+            "columnName": "permalink",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "exclude_from_stats",
+            "columnName": "exclude_from_stats",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "venueid",
+            "columnName": "venueid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "venue",
+            "columnName": "venue",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "state",
+            "columnName": "state",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "country",
+            "columnName": "country",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "artistid",
+            "columnName": "artistid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "artist_name",
+            "columnName": "artist_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tourid",
+            "columnName": "tourid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tour_name",
+            "columnName": "tour_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "setlist_notes",
+            "columnName": "setlist_notes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "soundcheck",
+            "columnName": "soundcheck",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "created_at",
+            "columnName": "created_at",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "updated_at",
+            "columnName": "updated_at",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "showid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_shows_showdate",
+            "unique": false,
+            "columnNames": [
+              "showdate"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_shows_showdate` ON `${TABLE_NAME}` (`showdate`)"
+          },
+          {
+            "name": "index_shows_showyear",
+            "unique": false,
+            "columnNames": [
+              "showyear"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_shows_showyear` ON `${TABLE_NAME}` (`showyear`)"
+          },
+          {
+            "name": "index_shows_venueid",
+            "unique": false,
+            "columnNames": [
+              "venueid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_shows_venueid` ON `${TABLE_NAME}` (`venueid`)"
+          },
+          {
+            "name": "index_shows_city",
+            "unique": false,
+            "columnNames": [
+              "city"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_shows_city` ON `${TABLE_NAME}` (`city`)"
+          },
+          {
+            "name": "index_shows_state",
+            "unique": false,
+            "columnNames": [
+              "state"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_shows_state` ON `${TABLE_NAME}` (`state`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "setlist_entries",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uniqueid` INTEGER NOT NULL, `showid` INTEGER NOT NULL, `showdate` TEXT NOT NULL, `songid` INTEGER, `song` TEXT NOT NULL, `slug` TEXT, `nickname` TEXT, `set_name` TEXT NOT NULL, `position` INTEGER, `transition` INTEGER, `trans_mark` TEXT, `footnote` TEXT, `isjam` INTEGER NOT NULL, `isreprise` INTEGER NOT NULL, `isjamchart` INTEGER NOT NULL, `jamchart_description` TEXT, `tracktime_seconds` INTEGER, `tracktime_raw` TEXT, `gap` REAL, `tourid` INTEGER, `tourname` TEXT, `tourwhen` TEXT, `venueid` INTEGER, `venue` TEXT, `city` TEXT, `state` TEXT, `country` TEXT, `artistid` INTEGER, `artist_name` TEXT, `setlistnotes` TEXT, `soundcheck` TEXT, PRIMARY KEY(`uniqueid`))",
+        "fields": [
+          {
+            "fieldPath": "uniqueid",
+            "columnName": "uniqueid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "showid",
+            "columnName": "showid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "showdate",
+            "columnName": "showdate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "songid",
+            "columnName": "songid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "song",
+            "columnName": "song",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slug",
+            "columnName": "slug",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nickname",
+            "columnName": "nickname",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "set_name",
+            "columnName": "set_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "position",
+            "columnName": "position",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "transition",
+            "columnName": "transition",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "trans_mark",
+            "columnName": "trans_mark",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "footnote",
+            "columnName": "footnote",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isjam",
+            "columnName": "isjam",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isreprise",
+            "columnName": "isreprise",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isjamchart",
+            "columnName": "isjamchart",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "jamchart_description",
+            "columnName": "jamchart_description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tracktime_seconds",
+            "columnName": "tracktime_seconds",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tracktime_raw",
+            "columnName": "tracktime_raw",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gap",
+            "columnName": "gap",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tourid",
+            "columnName": "tourid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tourname",
+            "columnName": "tourname",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "tourwhen",
+            "columnName": "tourwhen",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "venueid",
+            "columnName": "venueid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "venue",
+            "columnName": "venue",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "state",
+            "columnName": "state",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "country",
+            "columnName": "country",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "artistid",
+            "columnName": "artistid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "artist_name",
+            "columnName": "artist_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "setlistnotes",
+            "columnName": "setlistnotes",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "soundcheck",
+            "columnName": "soundcheck",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "uniqueid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_setlist_entries_showid",
+            "unique": false,
+            "columnNames": [
+              "showid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_setlist_entries_showid` ON `${TABLE_NAME}` (`showid`)"
+          },
+          {
+            "name": "index_setlist_entries_showdate",
+            "unique": false,
+            "columnNames": [
+              "showdate"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_setlist_entries_showdate` ON `${TABLE_NAME}` (`showdate`)"
+          },
+          {
+            "name": "index_setlist_entries_song",
+            "unique": false,
+            "columnNames": [
+              "song"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_setlist_entries_song` ON `${TABLE_NAME}` (`song`)"
+          },
+          {
+            "name": "index_setlist_entries_slug",
+            "unique": false,
+            "columnNames": [
+              "slug"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_setlist_entries_slug` ON `${TABLE_NAME}` (`slug`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "sync_meta",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`key` TEXT NOT NULL, `value` TEXT NOT NULL, `updated_at` TEXT, PRIMARY KEY(`key`))",
+        "fields": [
+          {
+            "fieldPath": "key",
+            "columnName": "key",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updated_at",
+            "columnName": "updated_at",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "key"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd162eb57d540ff259b38834a911d0ced')"
+    ]
+  }
+}

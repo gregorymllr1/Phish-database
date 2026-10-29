@@ -213,6 +213,19 @@ def cmd_init(_: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_android_db(_: argparse.Namespace) -> int:
+    from .android_db import ANDROID_DB_PATH, build_android_db
+
+    try:
+        counts = build_android_db()
+    except FileNotFoundError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
+    print(f"Wrote {ANDROID_DB_PATH}")
+    print(json.dumps(counts, indent=2))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Searchable Phish.net show database",
@@ -265,6 +278,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     stats_cmd = sub.add_parser("stats", help="Database statistics")
     stats_cmd.set_defaults(func=cmd_stats)
+
+    android_cmd = sub.add_parser("android-db", help="Copy the database into the Android app's assets")
+    android_cmd.set_defaults(func=cmd_android_db)
 
     return parser
 
